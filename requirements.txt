@@ -5,3 +5,4 @@ pinocchio
 coverage
 pylint
 pynose
+flake8
