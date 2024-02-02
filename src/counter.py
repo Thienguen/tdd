@@ -5,12 +5,14 @@ app = Flask(__name__)
 
 COUNTERS = {}
 
+
 # We will use the app decorator and create a route called slash counters.
 # specify the variable in route <name>
 # let Flask know that the only methods that is allowed to called
 # on this function is "POST".
 
 # GIVEN ------------------------------------------------------------------------
+
 @app.route('/counters/<name>', methods=['POST'])
 def create_counter(name):
     """Create a counter"""
@@ -39,6 +41,7 @@ def update_counter(name):
         # Step 4: Return the new counter and a 200_OK return code.
         return {name: COUNTERS[name]}, status.HTTP_200_OK
 
+
 # TASK ------------------------------------------------------------------------
 
 # > EXTRA ------------------------------------------------------------------------
@@ -48,12 +51,13 @@ def read_counter(name):
     app.logger.info(f"Request to read counter: {name}")
     return {name: COUNTERS[name]}, status.HTTP_200_OK
 
+
 # > EXTRA ------------------------------------------------------------------------
-# @app.route('/counters/<name>', methods=['DELETE'])
-# def delete_counter(name):
-#     """Delete a counter"""
-#     app.logger.info(f"Request to delete counter: {name}")
-#     global COUNTERS
-#     if name in COUNTERS:
-#         del COUNTERS[name]
-#         return '', status.HTTP_204_NO_CONTENT
+@app.route('/counters/<name>', methods=['DELETE'])
+def delete_counter(name):
+    """Delete a counter"""
+    app.logger.info(f"Request to delete counter: {name}")
+    global COUNTERS
+    if name in COUNTERS:
+        del COUNTERS[name]
+        return '', status.HTTP_204_NO_CONTENT

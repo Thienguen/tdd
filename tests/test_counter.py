@@ -63,12 +63,12 @@ class CounterTest(TestCase):
         # Step 6: Check that the counter value is one more than the baseline you measured in step 3.
         self.assertEqual(updated_value, baseline_value + 1)
 
-    # def test_delete_a_counter(self):
-    #     """It should delete a counter"""
-    #     # Step 1: Create a counter
-    #     create_result = self.client.post('/counters/bam')
-    #     self.assertEqual(create_result.status_code, status.HTTP_201_CREATED)
-    #
-    #     # Step 2: Delete the counter
-    #     delete_result = self.client.delete('/counters/bam')
-    #     self.assertEqual(delete_result.status_code, status.HTTP_204_NO_CONTENT)
+    def test_delete_a_counter(self):
+        """It should delete a counter"""
+        # Step 1: Create a counter
+        create_result = self.client.post('/counters/bam')
+        self.assertEqual(create_result.status_code, status.HTTP_201_CREATED)
+
+        # Step 2: Delete the counter
+        delete_result = self.client.delete('/counters/bam')
+        self.assertEqual(delete_result.status_code, status.HTTP_204_NO_CONTENT)
