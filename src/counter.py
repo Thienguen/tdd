@@ -33,11 +33,26 @@ def update_counter(name):
     """Update a counter"""
     app.logger.info(f"Request to update counter: {name}")
     global COUNTERS
-    # Step 3: Increment the counter by 1.
-    COUNTERS[name] += 1
-    # Step 4: Return the new counter and a 200_OK return code.
-    return {name: COUNTERS[name]}, status.HTTP_200_OK
+    if name in COUNTERS:
+        # Step 3: Increment the counter by 1.
+        COUNTERS[name] += 1
+        # Step 4: Return the new counter and a 200_OK return code.
+        return {name: COUNTERS[name]}, status.HTTP_200_OK
 
 # TASK ------------------------------------------------------------------------
 
+# > EXTRA ------------------------------------------------------------------------
+@app.route('/counters/<name>', methods=['GET'])
+def read_counter(name):
+    """Read a counter"""
+    app.logger.info(f"Request to read counter: {name}")
+    return {name: COUNTERS[name]}, status.HTTP_200_OK
+
+
+
+
+
+
+
+# > EXTRA ------------------------------------------------------------------------
 
